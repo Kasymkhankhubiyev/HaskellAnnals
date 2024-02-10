@@ -25,3 +25,21 @@ and False _ = False
 and True x = x
 
 
+-- the function recieves two arguments of boolean type
+or :: Bool -> Bool -> Bool
+-- the function returns False if both arguments are False and True otherwise
+or True _ = True
+or False x = x
+
+
+-- the function recieves two arguments  of boolean type
+-- and returns one value of boolean type
+xor :: Bool -> Bool -> Bool
+-- here we use previously defined functions to define xor
+xor a b = or (and (not a) b) (and a (not b))
+
+-- realization of IF-THEN_ELSE structure
+ifThenElse :: Bool -> a -> a -> a
+ifThenElse True t _ = t
+ifThenElse False _ e = e
+
