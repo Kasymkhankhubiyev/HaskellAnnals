@@ -63,3 +63,12 @@ factorial6 n
           in helper 1 n
      | otherwise = error "Error!"
 
+{-
+factorial7 n 
+          | n >= 0 = helper 1 n
+          | otherwise error "Error!"
+          where
+               helper acc 0 = acc
+               helper acc n = helper (acc * n) (n - 1)
+-}
+

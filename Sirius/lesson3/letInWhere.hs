@@ -17,8 +17,18 @@ roots'' a b c =
         d = sqrt (b ^ 2 - 4 * a * c)
         g = 2 * a
         x1 = (-b - d) / g
-        x2 = (-b + d) / gcd
+        x2 = (-b + d) / g
     in (x1, x2)
+
+
+-- if let-in might be used as a single expression, where 
+-- can be used only inside a function declaration
+roots''' a b c = (x1, x2)
+    where
+        d = sqrt (b ^ 2 - 4 * a * c)
+        g = 2 * a
+        x1 = (-b - d) / g
+        x2 = (-b + d) / g
 
 
 -- returns "wow!"
