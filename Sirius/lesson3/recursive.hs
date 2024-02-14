@@ -32,5 +32,34 @@ factorial'' n = if n < 0 then error "ERROR"
 -- factorial''' 0 = 1
 factorial''' n | n < 0 = error "ERROR!"
                | n == 0 = 1
-               | n > 0 = n * factorial''' (n - 1)                      
+               | n > 0 = n * factorial''' (n - 1)               
+
+
+
+-- something like a global variable
+factorial5 n | n >= 0 = helper 1 n
+             | otherwise = error "arg below zero"
+
+helper acc 0 = acc
+helper acc n = helper (acc * n) (n-1)
+
+{-
+     helper 1 5
+     helper 5 4
+     helper 20 3
+     helper 60 2
+     helper 120 1
+     helper 120 0
+     ~> factorial 5 = 120
+-}
+
+-- `:set +s` shows time and memory amount needded to execute a command
+
+
+factorial6 n
+     | n >= 0 = let
+          helper acc 0 = acc
+          helper acc n = helper (acc * n) (n - 1)
+          in helper 1 n
+     | otherwise = error "Error!"
 
