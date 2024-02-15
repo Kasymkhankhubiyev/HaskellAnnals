@@ -34,3 +34,9 @@ fibb n = fib_ 0 1 n where
 ~> 2 + 1 + helper 1 (1, 0)
 
 -}
+
+
+fibb'' n = helper 0 1 n 
+    where
+        helper a b 0 = a
+        helper a b n = helper b (a+b) (n-1)
