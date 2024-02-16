@@ -49,3 +49,6 @@ lengthList x = let
         helper s [] = s
         helper s (x:xs) = helper (s+1) xs  
     in helper 0 x
+
+
+-- lengthList' = foldr (\_ s -> s+1) 0
