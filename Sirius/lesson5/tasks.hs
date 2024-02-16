@@ -37,4 +37,37 @@ revRange' p = unfoldr g p
 on3 :: (b -> b -> b -> c) -> (a -> b) -> a -> a -> a -> c
 on3 op f x y z = op (f x) (f y) (f z)
 
-sumSquares3 =  on3 (\x y z -> x + y + z) (^2) 
+sumSquares3 =  on3 (\x y z -> x + y + z) (^2)
+
+
+{-
+    Задача: Реализуйте класс типов Printable, предоставляющий один метод toString — функцию одной переменной, которая преобразует значение типа, являющегося представителем Printable, в строковое представление.
+    Сделайте типы данных Bool и () представителями этого класса типов, обеспечив следующее поведение:
+    GHCi> toString True
+    "true"
+    GHCi> toString False
+    "false"
+    GHCi> toString ()
+    "unit type"
+
+    class Printable a where
+    ...
+
+    instance Printable Bool where
+    ...
+
+    instance Printable () where
+...
+
+-}
+
+class Printable a where
+    toString :: a -> String
+
+instance Printable Bool where
+    toString True = "true"
+    toString False = "false"
+
+instance Printable () where
+    toString _ = "unit type"
+
