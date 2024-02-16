@@ -69,10 +69,8 @@ blackScholesCall s k t =
 
 blackScholesPut s k t = 
     let 
-        d1 s k t = 1 / (sigma * sqrt t) * (logBase (exp 1) (s / k) + (r + (sigma^2) / 2) * t)
-        d2 s k t = d1 s k t - sigma * sqrt t
-    in k * exp (-r * t) * Phi.phi (-d2 s k t) - s * Phi.phi (-d1 s k t)
-
-
+        d1 = 1 / (sigma * sqrt t) * (logBase (exp 1) (s / k) + (r + (sigma^2) / 2) * t)
+        d2 = d1 - sigma * sqrt t
+    in k * exp (-r * t) * Phi.phi (-d2) - s * Phi.phi (-d1)
 
 -- black scholes обертка
