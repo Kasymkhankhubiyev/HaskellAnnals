@@ -27,7 +27,7 @@ https://ru.wikipedia.org/wiki/Метод_Ньютона
 
 
 bisection :: (Double -> Double) -> Double -> Double -> Double -> Double
-bisection f a b eps = undefined
+bisection f a b eps = undefined --Tdod
 
 
 newTown :: (Double -> Double) -> Double -> Double -> Double -> Double
