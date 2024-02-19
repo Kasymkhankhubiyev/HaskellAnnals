@@ -30,7 +30,9 @@ bisection :: (Double -> Double) -> Double -> Double -> Double -> Double
 bisection f a b eps = 
     let 
         bisection_ f a b eps counter
-            | counter == 100 =  error ("Iterations limit excided with x = " ++ show x_i)
+            | counter == 10000 =  error ("Iterations limit excided with x = " ++ show x_i)
+            | f a == 0 = a
+            | f b == 0 = b
             | abs fi < eps = x_i
             | fa * fi > 0 = bisection_ f x_i b eps (counter+1)
             | otherwise = bisection_ f a x_i eps (counter+1)
@@ -45,6 +47,7 @@ newTown :: (Double -> Double) -> (Double -> Double) -> Double -> Double -> Doubl
 newTown f df x0 eps =
     let 
         newTown_ x0 counter
+            | f x0 == 0 = x0
             | counter == 100 = error ("Iterations limit excided with x = " ++ show x0)
             | abs _lambda <= eps = x0
             | otherwise = newTown_ (x0 + _lambda) (counter+1)
@@ -52,7 +55,7 @@ newTown f df x0 eps =
                 _lambda = (- f x0) / df x0
     in newTown_ x0 0
 
-    
+
 newTownRobust :: (Double -> Double) -> (Double -> Double) -> Double -> Double -> Double
 newTownRobust f df x0 eps = undefined
 
