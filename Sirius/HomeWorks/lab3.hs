@@ -27,12 +27,32 @@ https://ru.wikipedia.org/wiki/Метод_Ньютона
 
 
 bisection :: (Double -> Double) -> Double -> Double -> Double -> Double
-bisection f a b eps = undefined --Tdod
+bisection f a b eps = 
+    let 
+        bisection_ f a b eps counter
+            | counter == 100 =  error ("Iterations limit excided with x = " ++ show x_i)
+            | abs fi < eps = x_i
+            | fa * fi > 0 = bisection_ f x_i b eps (counter+1)
+            | otherwise = bisection_ f a x_i eps (counter+1)
+            where
+                fa = f a
+                fb = f b
+                x_i = (a + b) / 2
+                fi = f x_i
+            in bisection_ f a b eps 0
 
+newTown :: (Double -> Double) -> (Double -> Double) -> Double -> Double -> Double
+newTown f df x0 eps =
+    let 
+        newTown_ x0 counter
+            | counter == 100 = error ("Iterations limit excided with x = " ++ show x0)
+            | abs _lambda <= eps = x0
+            | otherwise = newTown_ (x0 + _lambda) (counter+1)
+            where
+                _lambda = (- f x0) / df x0
+    in newTown_ x0 0
 
-newTown :: (Double -> Double) -> Double -> Double -> Double -> Double
-newTown f a b eps = undefined
+    
+newTownRobust :: (Double -> Double) -> (Double -> Double) -> Double -> Double -> Double
+newTownRobust f df x0 eps = undefined
 
-
-newTownRobust :: (Double -> Double) -> Double -> Double -> Double -> Double
-newTownRobust f a b eps = undefined

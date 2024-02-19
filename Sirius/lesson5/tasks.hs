@@ -63,6 +63,7 @@ sumSquares3 =  on3 (\x y z -> x + y + z) (^2)
 
 class Printable a where
     toString :: a -> String
+    -- (a) :: a -> String
 
 instance Printable Bool where
     toString True = "true"
