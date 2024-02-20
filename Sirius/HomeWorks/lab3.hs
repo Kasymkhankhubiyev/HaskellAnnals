@@ -26,14 +26,14 @@ https://ru.wikipedia.org/wiki/Метод_Ньютона
 -}
 
 
-bisection :: (Double -> Double) -> Double -> Double -> Double -> Double
+bisection :: (Double -> Double) -> Double -> Double -> Double -> (Double, Double, Int)
 bisection f a b eps = 
     let 
         bisection_ f a b eps counter
-            | counter == 10000 =  error ("Iterations limit excided with x = " ++ show x_i)
-            | f a == 0 = a
-            | f b == 0 = b
-            | abs fi < eps = x_i
+            | counter == 10^6 =  error ("Iterations limit excided with x = " ++ show x_i)
+            | fa == 0 = (a, 0, counter)
+            | fb == 0 = (b, 0, counter)
+            | (b - a) / 2 < eps = (x_i, (b - a) / 2, counter)
             | fa * fi > 0 = bisection_ f x_i b eps (counter+1)
             | otherwise = bisection_ f a x_i eps (counter+1)
             where
@@ -43,13 +43,13 @@ bisection f a b eps =
                 fi = f x_i
             in bisection_ f a b eps 0
 
-newTown :: (Double -> Double) -> (Double -> Double) -> Double -> Double -> Double
+newTown :: (Double -> Double) -> (Double -> Double) -> Double -> Double -> (Double, Double, Int)
 newTown f df x0 eps =
     let 
         newTown_ x0 counter
-            | f x0 == 0 = x0
-            | counter == 100 = error ("Iterations limit excided with x = " ++ show x0)
-            | abs _lambda <= eps = x0
+            -- | abs (f x0) < eps = (x0, f x0, counter)
+            | counter == 10^6 = error ("Iterations limit excided with x = " ++ show x0)
+            | abs _lambda <= eps = (x0,  abs _lambda, counter)
             | otherwise = newTown_ (x0 + _lambda) (counter+1)
             where
                 _lambda = (- f x0) / df x0
@@ -59,3 +59,4 @@ newTown f df x0 eps =
 newTownRobust :: (Double -> Double) -> (Double -> Double) -> Double -> Double -> Double
 newTownRobust f df x0 eps = undefined
 
+ 
