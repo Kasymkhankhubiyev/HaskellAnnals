@@ -1,4 +1,5 @@
 module Tasks where
+import Data.Function
 
 
 
@@ -77,3 +78,13 @@ data Shape = Circle Double | Rectangle Double Double
 area :: Shape -> Double
 area (Circle r) = pi * r^2
 area (Rectangle a b) = a * b
+
+
+{-
+    create a class person and implement a function to change its last name
+-}
+
+data Person = Person {firstName :: String, lastName :: String, age :: Int} deriving Show
+
+updateLastName :: Person -> Person -> Person
+updateLastName person1 person2 = person2 {lastName = person1&lastName}
