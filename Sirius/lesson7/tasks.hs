@@ -74,11 +74,11 @@ instance (Printable a, Printable b) => Printable (a, b) where
 
 class (Enum a, Eq a, Bounded a) => SafeEnum a where
     ssucc :: a -> a
-    ssucc x | x == maxBound = minBound 
+    ssucc x | x == maxBound = minBound
             | otherwise = succ x
 
     spred :: a -> a
-    spred x | x == minBound = maxBound 
+    spred x | x == minBound = maxBound
             | otherwise = pred x
 
 instance SafeEnum Bool
@@ -91,4 +91,4 @@ instance SafeEnum Int
 -}
 
 avg :: Int -> Int -> Int -> Double
-avg x y z = ((fromIntegral (x + y + z))::Double) / 3.0
+avg x y z = (fromIntegral (x + y + z)::Double) / 3.0
